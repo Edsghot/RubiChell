@@ -36,11 +36,29 @@ namespace _3._0.BusinessLayer.Business.User
             return _repoUser.insert(dto);
         }
 
-        public Boolean update(DtoUser dto)
+        public string update(DtoUser dto)
         {
             dto.password = HelperHash.HashPassword(dto.password);
 
-            return _repoUser.update(dto);
+            var res = _repoUser.update(dto);
+
+            if (res)
+            {
+                return "Se actualizo correctamente";
+            }
+            return "Hubo un error al actualizar";
+        }
+
+        public Boolean delete(string id)
+        {
+
+            return _repoUser.delete(id);
+        }
+
+        public DtoUser Login(RequestLoginUser request)
+        {
+            var password = HelperHash.HashPassword(request.password);
+            return _repoUser.login(request.mail, password);
         }
 
     }

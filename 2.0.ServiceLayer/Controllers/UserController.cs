@@ -47,11 +47,29 @@ namespace _2._0.ServiceLayer.Controllers
 
         [HttpPut]
         [Route("[action]")]
-        public ActionResult<SoUser> Update([FromBody] DtoUser dto)
+        public ActionResult<String> Update([FromBody] DtoUser dto)
         {
             var res = _business.update(dto);
 
             return Ok("se Actualizo correctamente " + res);
+        }
+
+        [HttpPost]
+        [Route("[action]")]
+        public ActionResult<DtoUser> Login([FromBody] RequestLoginUser request)
+        {
+            _so.dtoUser = _business.Login(request);
+
+            return _so.dtoUser;
+        }
+
+        [HttpDelete]
+        [Route("[action]")]
+        public ActionResult<Boolean> Delete(string id)
+        {
+            var res = _business.delete(id);
+
+            return res;
         }
     }
 }

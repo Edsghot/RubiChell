@@ -44,6 +44,7 @@ namespace _5._0.DataAccessLayer.Query
                 dtoUser.idUser = listUser[i].idUser;
                 dtoUser.mail = listUser[i].mail;
                 dtoUser.firstName = listUser[i].firstName;
+                dtoUser.password = listUser[i].password;
                 dtoUser.surName = listUser[i].surName;
                 dtoUser.dni = listUser[i].dni;
                 dtoUser.birthDate = listUser[i].birthDate;
@@ -73,6 +74,7 @@ namespace _5._0.DataAccessLayer.Query
                 dtoUser.mail = user.mail;
                 dtoUser.firstName = user.firstName;
                 dtoUser.surName = user.surName;
+                dtoUser.password = user.password;
                 dtoUser.dni = user.dni;
                 dtoUser.birthDate = user.birthDate;
                 dtoUser.gender = user.gender;
@@ -140,6 +142,36 @@ namespace _5._0.DataAccessLayer.Query
             }
         }
 
-        
+        public DtoUser login(string mail,string password)
+        {
+            using DataBaseContext dbc = new();
+
+            User userBy = dbc.Users.FirstOrDefault(x=> x.mail== mail && x.password == password);
+            DtoUser dtoUser = null;
+            if (userBy != null)
+            {
+                User user = dbc.Users.Find(userBy.idUser);
+
+                if (user is not null)
+                {
+                    dtoUser = new();
+
+                    dtoUser.idUser = user.idUser;
+                    dtoUser.mail = user.mail;
+                    dtoUser.firstName = user.firstName;
+                    dtoUser.surName = user.surName;
+                    dtoUser.password = user.password;
+                    dtoUser.dni = user.dni;
+                    dtoUser.birthDate = user.birthDate;
+                    dtoUser.gender = user.gender;
+                    dtoUser.registerDate = user.registerDate;
+                    dtoUser.modificationDate = user.modificationDate;
+                }
+            }
+                return dtoUser;
+            
+        }
+
+
     }
 }
