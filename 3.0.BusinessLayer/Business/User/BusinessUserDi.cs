@@ -5,6 +5,6 @@ namespace _3._0.BusinessLayer.Business.User
 {
     public partial class BusinessUser
     {
-        private RepoUser repoUser = new QUser();
+        private RepoUser _repoUser = new QUser();
     }
 }

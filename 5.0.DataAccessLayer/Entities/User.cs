@@ -9,7 +9,7 @@ namespace _5._0.DataAccessLayer.Entities
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         public string idUser { get; set; }
-        public string username { get; set; }
+        public string mail { get; set; }
         public string password { get; set; }
         public string firstName { get; set; }
         public string surName { get; set; }

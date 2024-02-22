@@ -2,6 +2,7 @@
 using _4._0.RepositoryLayer.Repository;
 using _5._0.DataAccessLayer.Connection;
 using _5._0.DataAccessLayer.Entities;
+using Azure.Core;
 
 namespace _5._0.DataAccessLayer.Query
 {
@@ -25,7 +26,7 @@ namespace _5._0.DataAccessLayer.Query
                 DtoUser dtoUser = new();
 
                 dtoUser.idUser = listUser[i].idUser;
-                dtoUser.username = listUser[i].username;
+                dtoUser.mail = listUser[i].mail;
                 dtoUser.firstName = listUser[i].firstName;
                 dtoUser.surName = listUser[i].surName;
                 dtoUser.dni = listUser[i].dni;
@@ -53,7 +54,7 @@ namespace _5._0.DataAccessLayer.Query
                 dtoUser = new();
 
                 dtoUser.idUser = user.idUser;
-                dtoUser.username = user.username;
+                dtoUser.mail = user.mail;
                 dtoUser.firstName = user.firstName;
                 dtoUser.surName = user.surName;
                 dtoUser.dni = user.dni;
@@ -68,7 +69,32 @@ namespace _5._0.DataAccessLayer.Query
 
         public int insert(DtoUser dto)
         {
-            throw new NotImplementedException();
+            using DataBaseContext dbc = new();
+
+            var newUser = new User
+            {
+                idUser = dto.idUser,
+                dni = dto.dni,
+                mail = dto.mail,
+                password = dto.password,
+                firstName = dto.firstName,
+                surName = dto.surName,
+                birthDate = dto.birthDate,
+                gender = dto.gender,
+                registerDate = dto.registerDate,
+            };
+            try
+            {
+                dbc.Users.Add(newUser);
+                dbc.SaveChanges();
+
+                return 1;
+            }
+            catch (Exception e)
+            {
+                return 0;
+            }
+
         }
 
         public int update(DtoUser dto)

@@ -1,4 +1,5 @@
-﻿using _2._0.ServiceLayer.ServiceObject;
+﻿using _0._0.DataTransferLayer.Request;
+using _2._0.ServiceLayer.ServiceObject;
 using _3._0.BusinessLayer.Business.User;
 using Microsoft.AspNetCore.Mvc;
 
@@ -32,6 +33,15 @@ namespace _2._0.ServiceLayer.Controllers
             _so.listDtoUser = _business.getAll();
 
             return _so;
+        }
+
+        [HttpPost]
+        [Route("[action]")]
+        public ActionResult<SoUser> Insert([FromBody] RequestUser request)
+        {
+            var res = _business.insert(request);
+
+            return Ok("se creo correctamente");
         }
     }
 }

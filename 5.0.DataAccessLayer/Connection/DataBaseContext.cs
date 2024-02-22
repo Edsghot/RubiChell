@@ -16,7 +16,7 @@ namespace _5._0.DataAccessLayer.Connection
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=KAAF-PC\\SQLEXPRESS;Database=dbcrud20232;User Id=sa;Password=030191;Trusted_Connection=True;TrustServerCertificate=True;");
+            optionsBuilder.UseSqlServer("Server=DESKTOP-0MM2HVP;Initial Catalog = RubiChell;Trusted_Connection =True;TrustServerCertificate=True;");
         }
     }
 }
