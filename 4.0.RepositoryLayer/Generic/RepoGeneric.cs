@@ -4,9 +4,9 @@ namespace _4._0.RepositoryLayer.Generic
 {
     public interface RepoGeneric<Dto>
     {
-        public int insert(DtoUser dto);
-        public int update(Dto dto);
-        public int delete(string id);
+        public Boolean insert(DtoUser dto);
+        public Boolean update(Dto dto);
+        public Boolean delete(string id);
         public Dto getByPk(string pk);
     }
 }

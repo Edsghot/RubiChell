@@ -1,16 +1,32 @@
 ﻿using _0._0.DataTransferLayer.Objects;
+using _1._0.HelpersLayer.Helper;
 using _4._0.RepositoryLayer.Repository;
 using _5._0.DataAccessLayer.Connection;
 using _5._0.DataAccessLayer.Entities;
 using Azure.Core;
+using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace _5._0.DataAccessLayer.Query
 {
     public class QUser : RepoUser
     {
-        public int delete(string id)
+        public Boolean delete(string id)
         {
-            throw new NotImplementedException();
+            using DataBaseContext dbc = new();
+            
+            User user = dbc.Users.Find(id);
+
+            if (user is null)
+            {
+                return false;
+            }
+
+            dbc.Users.Remove(user);
+
+            return true;
+
         }
 
         public List<DtoUser> getAll()
@@ -67,7 +83,7 @@ namespace _5._0.DataAccessLayer.Query
             return dtoUser;
         }
 
-        public int insert(DtoUser dto)
+        public Boolean insert(DtoUser dto)
         {
             using DataBaseContext dbc = new();
 
@@ -88,18 +104,42 @@ namespace _5._0.DataAccessLayer.Query
                 dbc.Users.Add(newUser);
                 dbc.SaveChanges();
 
-                return 1;
+                return true;
             }
             catch (Exception e)
             {
-                return 0;
+                return false;
             }
 
         }
 
-        public int update(DtoUser dto)
+        public bool update(DtoUser dto)
         {
-            throw new NotImplementedException();
+            using DataBaseContext dbc = new();
+
+            User user = dbc.Users.Find(dto.idUser);
+
+            user.dni = dto.dni;
+            user.mail = dto.mail;
+            user.password = dto.password;
+            user.firstName = dto.firstName;
+            user.surName = dto.surName;
+            user.birthDate = dto.birthDate;
+            user.gender = dto.gender;
+            user.registerDate = dto.registerDate;
+           
+            try
+            {
+                dbc.SaveChanges();
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
         }
+
+        
     }
 }

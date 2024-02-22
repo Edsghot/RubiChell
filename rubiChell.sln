@@ -3,17 +3,20 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "0.0.DataTransferLayer", "0.0.DataTransferLayer\0.0.DataTransferLayer.csproj", "{54285A0F-4BDE-497B-9002-6A59890EAD9D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "0.0.DataTransferLayer", "0.0.DataTransferLayer\0.0.DataTransferLayer.csproj", "{54285A0F-4BDE-497B-9002-6A59890EAD9D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "1.0.HelpersLayer", "1.0.HelpersLayer\1.0.HelpersLayer.csproj", "{2308C95C-38FE-40C7-A6C6-CACAA7044F5F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "1.0.HelpersLayer", "1.0.HelpersLayer\1.0.HelpersLayer.csproj", "{2308C95C-38FE-40C7-A6C6-CACAA7044F5F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2.0.ServiceLayer", "2.0.ServiceLayer\2.0.ServiceLayer.csproj", "{DC33092C-9030-45AC-9B2B-60BDD3F8FC5A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2.0.ServiceLayer", "2.0.ServiceLayer\2.0.ServiceLayer.csproj", "{DC33092C-9030-45AC-9B2B-60BDD3F8FC5A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3.0.BusinessLayer", "3.0.BusinessLayer\3.0.BusinessLayer.csproj", "{7A5DC1DB-B812-496A-B71A-7EB315834C3A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "3.0.BusinessLayer", "3.0.BusinessLayer\3.0.BusinessLayer.csproj", "{7A5DC1DB-B812-496A-B71A-7EB315834C3A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "4.0.RepositoryLayer", "4.0.RepositoryLayer\4.0.RepositoryLayer.csproj", "{7543ED99-0C81-48F1-9DF7-76A4BD62DBAC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "4.0.RepositoryLayer", "4.0.RepositoryLayer\4.0.RepositoryLayer.csproj", "{7543ED99-0C81-48F1-9DF7-76A4BD62DBAC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "5.0.DataAccessLayer", "5.0.DataAccessLayer\5.0.DataAccessLayer.csproj", "{CB6E8A60-9CF9-4EF4-B66F-699915F2745E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "5.0.DataAccessLayer", "5.0.DataAccessLayer\5.0.DataAccessLayer.csproj", "{CB6E8A60-9CF9-4EF4-B66F-699915F2745E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2308C95C-38FE-40C7-A6C6-CACAA7044F5F} = {2308C95C-38FE-40C7-A6C6-CACAA7044F5F}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
