@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace _2._0.ServiceLayer.Controllers
 {
-
+    [Authorize]
     [Route("[controller]")]
     public class UserController : Controller
     {
@@ -37,6 +37,7 @@ namespace _2._0.ServiceLayer.Controllers
             return _so;
         }
 
+        [AllowAnonymous]
         [HttpPost]
         [Route("[action]")]
         public ActionResult<SoGeneric> Insert([FromBody] DtoCreateUser request)
@@ -56,6 +57,7 @@ namespace _2._0.ServiceLayer.Controllers
             return _so;
         }
 
+        [AllowAnonymous]
         [HttpPost]
         [Route("[action]")]
         public ActionResult<SoGeneric> Login([FromBody] DtoLoginUser request)
