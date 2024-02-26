@@ -9,5 +9,7 @@ namespace _4._0.RepositoryLayer.Repository
         DtoUser login(string mail, string password);
         public Boolean insert(DtoUser dto);
         public Boolean delete(string id);
+        public Boolean existsUser(string mail);
+        public Boolean existsUserByDni(string dni);
     }
 }

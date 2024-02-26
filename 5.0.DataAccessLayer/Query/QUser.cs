@@ -172,6 +172,32 @@ namespace _5._0.DataAccessLayer.Query
             
         }
 
+        public Boolean existsUser(string mail)
+        {
+            using DataBaseContext dbc = new();
+
+            User userBy = dbc.Users.FirstOrDefault(x => x.mail == mail);
+
+            if (userBy != null)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public Boolean existsUserByDni(string dni)
+        {
+            using DataBaseContext dbc = new();
+
+            User userBy = dbc.Users.FirstOrDefault(x => x.dni == dni);
+
+            if (userBy != null)
+            {
+                return true;
+            }
+            return false;
+        }
+
 
     }
 }
