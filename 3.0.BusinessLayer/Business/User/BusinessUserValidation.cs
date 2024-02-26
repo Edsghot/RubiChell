@@ -33,7 +33,7 @@ namespace _3._0.BusinessLayer.Business.User
 
         public Boolean validateCreateUser(DtoCreateUser user)
         {
-            if (user.dni.Length == 8 && user.firstName != default && user.surName != default)
+            if (user.dni.Length == 8 && user.firstName != default && user.surName != default && user.password.Length >= 8)
             {
                 return true;
             }
@@ -42,7 +42,7 @@ namespace _3._0.BusinessLayer.Business.User
 
         public Boolean validateUpdateUser(DtoUser user)
         {
-            if (user.dni.Length == 8 && user.firstName != default && user.surName != default)
+            if (user.dni.Length == 8 && user.firstName != default && user.surName != default && user.password.Length >= 8)
             {
                 return true;
             }

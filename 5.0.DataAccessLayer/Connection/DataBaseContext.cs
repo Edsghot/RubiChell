@@ -16,7 +16,7 @@ namespace _5._0.DataAccessLayer.Connection
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=DESKTOP-0MM2HVP;Initial Catalog = RubiChell;Trusted_Connection =True;TrustServerCertificate=True;");
+            optionsBuilder.UseSqlServer("Server=DESKTOP-NSJU15G\\JHAIR;Initial Catalog = RubiChell2;Trusted_Connection =True;TrustServerCertificate=True;");
         }
     }
 }
