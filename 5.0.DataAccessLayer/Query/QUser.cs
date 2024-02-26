@@ -24,7 +24,7 @@ namespace _5._0.DataAccessLayer.Query
             }
 
             dbc.Users.Remove(user);
-
+            dbc.SaveChanges();
             return true;
 
         }

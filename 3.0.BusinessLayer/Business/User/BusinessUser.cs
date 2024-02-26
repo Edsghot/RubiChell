@@ -1,23 +1,31 @@
-﻿using _0._0.DataTransferLayer.Objects;
-using _0._0.DataTransferLayer.Request;
+﻿using _0._0.DataTransferLayer.Generic;
+using _0._0.DataTransferLayer.Objects;
 using _1._0.HelpersLayer.Helper;
 using Azure.Core;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace _3._0.BusinessLayer.Business.User
 {
+    
     public partial class BusinessUser
     {
-        public Guid guid;
-        public DtoUser getByPk(string pk) 
+        public DtoResponse getByPk(string pk) 
         {
-            return _repoUser.getByPk(pk);
+            var res = _repoUser.getByPk(pk);
+            isNullDto(res);
+            return _response;
         }
 
-        public List<DtoUser> getAll() 
+        public DtoResponse getAll()
         {
-            return _repoUser.getAll();
+            var res =  _repoUser.getAll();
+            isNullDto(res);
+            return _response;
         }
-        public Boolean insert(RequestUser request)
+        public DtoResponse insert(DtoCreateUser request)
         {
             var dto = new DtoUser
             {
@@ -33,32 +41,36 @@ namespace _3._0.BusinessLayer.Business.User
             };
 
 
-            return _repoUser.insert(dto);
+            var res = _repoUser.insert(dto);
+
+            isNullDto(res);
+            return _response;
         }
 
-        public string update(DtoUser dto)
+        public DtoResponse update(DtoUser dto)
         {
             dto.password = HelperHash.HashPassword(dto.password);
 
             var res = _repoUser.update(dto);
-
-            if (res)
-            {
-                return "Se actualizo correctamente";
-            }
-            return "Hubo un error al actualizar";
+            isNullDto(res);
+            return _response;
         }
 
-        public Boolean delete(string id)
+        public DtoResponse delete(string id)
         {
 
-            return _repoUser.delete(id);
+            var res = _repoUser.delete(id);
+
+            isNullDto(res);
+            return _response;
         }
 
-        public DtoUser Login(RequestLoginUser request)
+        public DtoResponse Login(DtoLoginUser request)
         {
             var password = HelperHash.HashPassword(request.password);
-            return _repoUser.login(request.mail, password);
+            var res = _repoUser.login(request.mail, password);
+            generarToken(res);
+            return _response;
         }
 
     }

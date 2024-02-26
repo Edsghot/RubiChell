@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _0._0.DataTransferLayer.Request;
+namespace _0._0.DataTransferLayer.Objects;
 
-public record RequestUser
+public record DtoCreateUser
 {
     public string mail { get; set; }
     public string password { get; set; }

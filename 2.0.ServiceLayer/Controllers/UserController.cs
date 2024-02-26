@@ -1,16 +1,17 @@
 ﻿using _0._0.DataTransferLayer.Objects;
-using _0._0.DataTransferLayer.Request;
 using _2._0.ServiceLayer.ServiceObject;
 using _3._0.BusinessLayer.Business.User;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace _2._0.ServiceLayer.Controllers
 {
+
     [Route("[controller]")]
     public class UserController : Controller
     {
         BusinessUser _business = null;
-        SoUser _so = null;
+        SoGeneric _so = null;
 
         public UserController() 
         {
@@ -20,56 +21,58 @@ namespace _2._0.ServiceLayer.Controllers
 
         [HttpGet]
         [Route("[action]")]
-        public ActionResult<SoUser> GetByPk(string idUser)
+        public ActionResult<SoGeneric> GetByPk(string idUser)
         {
-            _so.dtoUser = _business.getByPk(idUser);
-
+            var res = _business.getByPk(idUser);
+            _so.setResponse(res);
             return _so;
         }
 
         [HttpGet]
         [Route("[action]")]
-        public ActionResult<SoUser> GetAll() 
+        public ActionResult<SoGeneric> GetAll() 
         {
-            _so.listDtoUser = _business.getAll();
-
+            var res = _business.getAll();
+            _so.setResponse(res);
             return _so;
         }
 
         [HttpPost]
         [Route("[action]")]
-        public ActionResult<SoUser> Insert([FromBody] RequestUser request)
+        public ActionResult<SoGeneric> Insert([FromBody] DtoCreateUser request)
         {
             var res = _business.insert(request);
-
-            return Ok("se creo correctamente "+res);
+            _so.setResponse(res);
+            return _so;
         }
 
         [HttpPut]
         [Route("[action]")]
-        public ActionResult<String> Update([FromBody] DtoUser dto)
+        public ActionResult<SoGeneric> Update([FromBody] DtoUser dto)
         {
             var res = _business.update(dto);
 
-            return Ok("se Actualizo correctamente " + res);
+            _so.setResponse(res);
+            return _so;
         }
 
         [HttpPost]
         [Route("[action]")]
-        public ActionResult<DtoUser> Login([FromBody] RequestLoginUser request)
+        public ActionResult<SoGeneric> Login([FromBody] DtoLoginUser request)
         {
-            _so.dtoUser = _business.Login(request);
-
-            return _so.dtoUser;
+            var res = _business.Login(request);
+            _so.setResponse(res);
+            return _so;
         }
 
         [HttpDelete]
         [Route("[action]")]
-        public ActionResult<Boolean> Delete(string id)
+        public ActionResult<SoGeneric> Delete(string id)
         {
             var res = _business.delete(id);
 
-            return res;
+            _so.setResponse(res);
+            return _so;
         }
     }
 }

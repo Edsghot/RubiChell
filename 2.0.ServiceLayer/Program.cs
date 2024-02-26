@@ -1,3 +1,6 @@
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -16,6 +19,24 @@ builder.Services.AddCors(options =>
                .AllowAnyMethod()
                .AllowAnyHeader();
     });
+});
+
+
+string key = "ahsaxjsaxhsaxjwqqxmkaxkamxka1=";
+
+builder.Services.AddAuthorization();
+builder.Services.AddAuthentication("Bearer").AddJwtBearer(opt =>
+{
+    var signingKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
+    var signingCredentials = new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256Signature);
+    opt.RequireHttpsMetadata = false;
+
+    opt.TokenValidationParameters = new TokenValidationParameters()
+    {
+        ValidateAudience = false,
+        ValidateIssuer = false,
+        IssuerSigningKey = signingKey,
+    };
 });
 
 var app = builder.Build();
