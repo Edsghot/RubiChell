@@ -185,6 +185,19 @@ namespace _5._0.DataAccessLayer.Query
             return false;
         }
 
+        public string getPassword(string id)
+        {
+            using DataBaseContext dbc = new();
+
+            User userBy = dbc.Users.Find(id);
+
+            if (userBy != null)
+            {
+                return userBy.password;
+            }
+            return null;
+        }
+
         public Boolean existsUserByDni(string dni)
         {
             using DataBaseContext dbc = new();

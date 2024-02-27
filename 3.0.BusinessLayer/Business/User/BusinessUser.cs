@@ -91,7 +91,7 @@ namespace _3._0.BusinessLayer.Business.User
 
             var previousPassword = _repoUser.getPassword(dto.idUser);
 
-            if (previousPassword == null && !previousPassword.Equals(dto.Password))
+            if (previousPassword == null && !previousPassword.Equals(dto.password))
             {
 
                 dto.password = HelperHash.HashPassword(dto.password);

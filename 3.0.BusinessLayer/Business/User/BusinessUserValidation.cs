@@ -66,6 +66,7 @@ namespace _3._0.BusinessLayer.Business.User
             return false;
         }
 
+
         public Boolean validateMail(string mail)
         {
             string pattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";

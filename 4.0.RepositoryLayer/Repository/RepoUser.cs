@@ -11,5 +11,7 @@ namespace _4._0.RepositoryLayer.Repository
         public Boolean delete(string id);
         public Boolean existsUser(string mail);
         public Boolean existsUserByDni(string dni);
+        public string getPassword(string id);
+
     }
 }
