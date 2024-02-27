@@ -89,7 +89,13 @@ namespace _3._0.BusinessLayer.Business.User
                 return _response;
             }
 
-            dto.password = HelperHash.HashPassword(dto.password);
+            var previousPassword = _repoUser.getPassword(dto.idUser);
+
+            if (previousPassword == null && !previousPassword.Equals(dto.Password))
+            {
+
+                dto.password = HelperHash.HashPassword(dto.password);
+            }
 
             var res = _repoUser.update(dto);
             isNullDto(res);
